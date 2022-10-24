@@ -1,0 +1,128 @@
+
+window.iUseQQConnect = 1;
+function checkAward(){
+  Milo.loginByQQConnect({
+    appId: "101491592",
+    scope: "get_user_info",
+    state: "STATE",
+    redirectUri: "https://milo.qq.com/comm-htdocs/login/qc_redirect.html",
+    sUrl: '',//登录之后的跳转地址
+    callback: checkAward2,//登录成功后的回调
+});
+}
+
+var flow_898528 = {
+  actId: '507065',
+  token: '8236b2',
+  sData: {
+  },
+  success: function(res){
+    
+    if( res.details.jData.awardNum == 10000 ){
+      var date = res.details.jData.awardDate.substr(res.details.jData.awardDate.length-2,2);
+      $('#pop3 .pop-txt3 .t1')[0].innerHTML ='恭喜你的账号在10月'+ date +'日参加云顶之巅复赛，';
+      $('#pop3 .pop-txt3 .t2')[0].innerHTML = '获得10000元现金奖励。';
+      TGDialogS('pop3');
+    }else if( res.details.jData.awardNum == 888 ){
+      var date = res.details.jData.awardDate.substr(res.details.jData.awardDate.length-2,2);
+      $('#pop3 .pop-txt3 .t1')[0].innerHTML = '恭喜你的账号在10月'+ date +'日参加云顶之巅复赛，';
+      $('#pop3 .pop-txt3 .t2')[0].innerHTML = '获得888元现金奖励。';
+      TGDialogS('pop3');
+    }else{
+      TGDialogS('pop2');
+    }
+  },
+  fail: function(res){
+        if(res.iRet == 101){
+            //todo 登录态失效，需要重新调登录方法 （开发自行实现）
+        } else if (res.iRet == 99998) {
+            // todo 调用提交绑定大区方法
+        }
+        console.log(res);
+  }
+}
+
+function checkAward2(){
+  Milo.emit(flow_898528);
+}
+
+
+function getAward(){
+  Milo.emit(flow_898211);
+  closeDialog()
+}
+
+var flow_898211 = {
+  actId: '507065',
+  token: '093183',
+  sData: {
+  },
+  success: function(res){
+    $('#pop4 .pop-txt4')[0].innerHTML = res.sMsg;
+    TGDialogS('pop4')
+  },
+  fail: function(res){
+        if(res.iRet == 101){
+            //todo 登录态失效，需要重新调登录方法 （开发自行实现）
+        } else if (res.iRet == 99998) {
+            // todo 调用提交绑定大区方法
+        }
+        $('#pop4 .pop-txt4')[0].innerHTML = res.sMsg;
+    TGDialogS('pop4')
+  }
+}
+
+var flow_898529 = {
+  actId: '507065',
+  token: '517a56',
+  sData: {
+        dateParam: "", 
+  },
+  success: function(res){
+    initDom(res);
+  },
+  fail: function(res){
+        if(res.iRet == 101){
+            //todo 登录态失效，需要重新调登录方法 （开发自行实现）
+        } else if (res.iRet == 99998) {
+            // todo 调用提交绑定大区方法
+        }
+        console.log(res);
+  }
+}
+
+Milo.emit(flow_898529);
+
+function initDom(arr){
+  var html = '';
+  var html1 = '<tr><th colspan="2"><span>QQ号码</span><span>获奖金额</span></th></tr>';
+  var html2 = '<tr><th colspan="2"><span>QQ号码</span><span>获奖金额</span></th></tr>';
+  var html3 = '<tr><th colspan="2"><span>QQ号码</span><span>获奖金额</span></th></tr>';
+  var html4 = '<tr><th colspan="2"><span>QQ号码</span><span>获奖金额</span></th></tr>';
+  var html5 = '<tr><th colspan="2"><span>QQ号码</span><span>获奖金额</span></th></tr>';
+  var html6 = '<tr><th colspan="2"><span>QQ号码</span><span>获奖金额</span></th></tr>';
+  for(var a =0;a<arr.details.jData.result.length;a++){
+    var element = arr.details.jData.result[a];
+    if(element.dtAwardDate == '2022-10-20' || element.dtAwardDate == '2022-10-17'){
+      html1 += '<tr><td>'+ element.iUin +'</td><td>'+element.iAwardNum+'</td></tr>';
+    }else if(element.dtAwardDate == '2022-10-21' || element.dtAwardDate == '0000-00-00'){
+      html2 += '<tr><td>'+ element.iUin +'</td><td>'+element.iAwardNum+'</td></tr>';
+    }else if(element.dtAwardDate == '2022-10-22'){
+      html3 += '<tr><td>'+ element.iUin +'</td><td>'+element.iAwardNum+'</td></tr>';
+    }else if(element.dtAwardDate == '2022-10-23'){
+      html4 += '<tr><td>'+ element.iUin +'</td><td>'+element.iAwardNum+'</td></tr>';
+    }else if(element.dtAwardDate == '2022-10-24'){
+      html5 += '<tr><td>'+ element.iUin +'</td><td>'+element.iAwardNum+'</td></tr>';
+    }else if(element.dtAwardDate == '2022-10-25'){
+      html6 += '<tr><td>'+ element.iUin +'</td><td>'+element.iAwardNum+'</td></tr>';
+    }
+  }
+    
+  $('#award1')[0].innerHTML = html1;
+  $('#award2')[0].innerHTML = html2;
+  $('#award3')[0].innerHTML = html3;
+  $('#award4')[0].innerHTML = html4;
+  $('#award5')[0].innerHTML = html5;
+  $('#award6')[0].innerHTML = html6;
+}
+

@@ -1,0 +1,426 @@
+const LIVE_ROOMS = {
+	"douyu": [
+		{
+		"link": "https://www.douyu.com/594019",
+		"qq": "8f4a2f0aa705113d857ad418a3075956"
+		},
+		{
+		"link": "https://www.douyu.com/1300804",
+		"qq": "078d3bb167c49f308e25bdbefc98d887"
+		},
+		{
+		"link": "https://www.douyu.com/7084089",
+		"qq": "f252bde47e8834d006722a9195ed5c2a"
+		},
+		{
+		"link": "https://www.douyu.com/4666609",
+		"qq": "ce0be0a3edc092a897ec0fb276649e24"
+		},
+		{
+		"link": "https://www.douyu.com/1871158",
+		"qq": "ea39ac3789336ad6040f4a26e2d9dc76"
+		},
+		{
+		"link": "https://www.douyu.com/9471398",
+		"qq": "41f0bae45db0ba47ecc6636d30aa79b6"
+		},
+		{
+		"link": "https://www.douyu.com/7421029",
+		"qq": "63248ab816d5fe9258a4cef722357748"
+		},
+		{
+		"link": "https://www.douyu.com/9462277",
+		"qq": "08d47228145f836e8fdce35fca1af960"
+		},
+		{
+		"link": "https://www.douyu.com/4066273",
+		"qq": "c0a1cc8fbf6c54cf3b7a2aede23d98fb"
+		},
+		{
+		"link": "https://www.douyu.com/7251147",
+		"qq": "22bfb1ca5151c6cb599346187d100db5"
+		},
+		{
+		"link": "https://www.douyu.com/9216280",
+		"qq": "15abb842b8173daa4e0787ab9b4f9212"
+		},
+		{
+		"link": "https://www.douyu.com/989347",
+		"qq": "d90862fc6e4a12dfe992ee3698fbf739"
+		},
+		{
+		"link": "https://www.douyu.com/9700836",
+		"qq": "323a6a61f89a69c6ed1e61afc9d24941"
+		},
+		{
+		"link": "https://www.douyu.com/1405051",
+		"qq": "36fca33ceed4f6bfa02837b7ed15e79a"
+		},
+		{
+		"link": "https://www.douyu.com/286993",
+		"qq": "57c8c5e545c8ef2ea204c0fb8194cbff"
+		},
+		{
+		"link": "https://www.douyu.com/7388349",
+		"qq": "c4d25658231fb354c3c01a26f2452579"
+		},
+		{
+		"link": "https://www.douyu.com/7175334",
+		"qq": "f6de0e920e68e2214f91bfc027911877"
+		},
+		{
+		"link": "https://www.douyu.com/5118020",
+		"qq": "3671ecb1b7225346a65ff7893b1c614a"
+		},
+		{
+		"link": "https://www.douyu.com/9451499",
+		"qq": "da02666ab6aa3b8922b276320211408f"
+		},
+		{
+		"link": "https://www.douyu.com/2113728",
+		"qq": "c47feedc57329ac3abb36882a31e4c76"
+		}
+	],
+	"huya": [
+		{
+		"link": "https://www.huya.com/102411",
+		"qq": "643096b2e165ccb6adc71f6b30075d92"
+		},
+		{
+		"link": "https://www.huya.com/229085",
+		"qq": "ef63ab301cab1082480bec55bfa35054"
+		},
+		{
+		"link": "https://www.huya.com/31421",
+		"qq": "0fa3fbc9c98a0e951c0d84d628ebc4a0"
+		},
+		{
+		"link": "https://www.huya.com/qitux",
+		"qq": "97ba72216dc6aa9a9f21c07deba8d658"
+		},
+		{
+		"link": "https://www.huya.com/598527",
+		"qq": "88e6163d47d577a5075571a75bb5a4cc"
+		},
+		{
+		"link": "https://www.huya.com/610649",
+		"qq": "78e06002d98f8482a570b3ee00b3cb7c"
+		},
+		{
+		"link": "https://www.huya.com/siwenlong123",
+		"qq": "2230471228b77e901ec56ef97aa4043a"
+		},
+		{
+		"link": "https://www.huya.com/187501",
+		"qq": "60f2c370e3192f2dd30b9dc39c1ded98"
+		},
+		{
+		"link": "https://www.huya.com/ihou666",
+		"qq": "e086d7ec6df566bb61855a5d1a7086ff"
+		},
+		{
+		"link": "https//www.huya.com/652814",
+		"qq": "2230471228b77e901ec56ef97aa4043a"
+		},
+		{
+		"link": "https://www.huya.com/510667",
+		"qq": "aad8067c062768b42b32d1e937381b15"
+		},
+		{
+		"link": "https://www.huya.com/239886",
+		"qq": "bfdc257075ee06702914e634a1745fc3"
+		},
+		{
+		"link": "https://www.huya.com/731244",
+		"qq": "6cf0639fbc10c295286adcac22083268"
+		},
+		{
+		"link": "https://www.huya.com/317217",
+		"qq": "762f98ea70803ea637ced9b3f5e00fd2"
+		},
+		{
+		"link": "http://www.huya.com/621380",
+		"qq": "daf96cc4d1ce75ec4fc1c844422bd6f5"
+		},
+		{
+		"link": "http://www.huya.com/517659",
+		"qq": "f221a376ebbdb9c6412155d1d9cbc242"
+		},
+		{
+		"link": "https://www.huya.com/273251",
+		"qq": "b49bea04557ad4caf3c4fec8b8701198"
+		},
+		{
+		"link": "https://www.huya.com/713329",
+		"qq": "7a2e625102a8938f7df4701068c70e34"
+		},
+		{
+		"link": "https://www.huya.com/573728",
+		"qq": "34d1aec437dca132b042fc7f63244f24"
+		},
+		{
+		"link": "http://www.huya.com/713627?platform=7&from=cpy&shareid=11209333926855238876&shareUid=2219639974&pid=2219639974",
+		"qq": "ada28ed6a2c21163f895205b54f6ba58"
+		},
+		{
+		"link": "https://www.huya.com/feifeiqiu",
+		"qq": "1ac92b432819c77dadb2d35ec20165bf"
+		},
+		{
+		"link": "https://www.huya.com/diyizhi",
+		"qq": "93595165b5bdc2acd09d1f3fb389c736"
+		},
+		{
+		"link": "https://www.huya.com/19918941",
+		"qq": "1e9f077fe013926061e9cfd63b4cb227"
+		},
+		{
+		"link": "https//www.huya.com/20895614",
+		"qq": "ae7baae3dc0590929ede85125bc13245"
+		},
+		{
+		"link": "https://www.huya.com/20653361",
+		"qq": "57ffa18426cd91d5a1961e40c63a3c0e"
+		},
+		{
+		"link": "https://www.huya.com/27268899",
+		"qq": "a109d14d00372712a90c0403d9a9f8e8"
+		},
+		{
+		"link": "http://www.huya.com/20206246",
+		"qq": "65aa939cc738ab216fb2e98f5634e73c"
+		},
+		{
+		"link": "https://www.huya.com/27808653",
+		"qq": "a6e671dde8e5b354e8dbd05baad68e85"
+		},
+		{
+		"link": "https://www.huya.com/27523665",
+		"qq": "1e7b12aa85c22edf17841469f0584d48"
+		},
+		{
+		"link": "https://www.huya.com/27253437",
+		"qq": "b52d38189e9ffdb57c28361080cc56f7"
+		},
+		{
+		"link": "https://www.huya.com/657317",
+		"qq": "04c37bc185ab2dfac47d36a0f6974eb9"
+		},
+		{
+		"link": "https://www.huya.com/23854774",
+		"qq": "f70b8902b72c97291fdac37beb9b10ea"
+		},
+		{
+		"link": "https://www.huya.com/273244",
+		"qq": "af1a7d995ed82f9bb6958d29d78fc83c"
+		},
+		{
+		"link": "https://www.huya.com/22648299",
+		"qq": "5df2a890f59df626767e0896de6c9700"
+		},
+		{
+		"link": "https://www.huya.com/657316",
+		"qq": "b3676f217eddabadebbc5f7e95b49889"
+		},
+		{
+		"link": "https://www.huya.com/102411",
+		"qq": "643096b2e165ccb6adc71f6b30075d92"
+		},
+		{
+		"link": "https://www.huya.com/229085",
+		"qq": "ef63ab301cab1082480bec55bfa35054"
+		},
+		{
+		"link": "https://www.huya.com/31421",
+		"qq": "0fa3fbc9c98a0e951c0d84d628ebc4a0"
+		},
+		{
+		"link": "https://www.huya.com/qitux",
+		"qq": "97ba72216dc6aa9a9f21c07deba8d658"
+		},
+		{
+		"link": "https://www.huya.com/598527",
+		"qq": "c201993ce2bbee6d795dc6625149f86d"
+		},
+		{
+		"link": "https://www.huya.com/239886",
+		"qq": "bfdc257075ee06702914e634a1745fc3"
+		},
+		{
+		"link": "https://www.huya.com/610649",
+		"qq": "78e06002d98f8482a570b3ee00b3cb7c"
+		},
+		{
+		"link": "https://www.huya.com/657317",
+		"qq": "04c37bc185ab2dfac47d36a0f6974eb9"
+		},
+		{
+		"link": "https://www.huya.com/621380",
+		"qq": "daf96cc4d1ce75ec4fc1c844422bd6f5"
+		},
+		{
+		"link": "https://www.huya.com/20635767",
+		"qq": "72be1cd674a7f15429015c02e2096102"
+		},
+		{
+		"link": "https://www.huya.com/517659",
+		"qq": "f221a376ebbdb9c6412155d1d9cbc242"
+		},
+		{
+		"link": "https://www.huya.com/273244",
+		"qq": "af1a7d995ed82f9bb6958d29d78fc83c"
+		},
+		{
+		"link": "https://www.huya.com/573728",
+		"qq": "34d1aec437dca132b042fc7f63244f24"
+		},
+		{
+		"link": "https://www.huya.com/124123",
+		"qq": "35de309041728d01dc12251ec2d121ca"
+		},
+		{
+		"link": "https://www.huya.com/913134",
+		"qq": "5e1180bee4ba4b44da45a9c7cf565403"
+		},
+		{
+		"link": "https://www.huya.com/517647",
+		"qq": "6eb473ea4c6e3a006d3e0ee4c54065d6"
+		},
+		{
+		"link": "https://www.huya.com/713328",
+		"qq": "5eba2aa881f9083d132764e058d98f35"
+		},
+		{
+		"link": "https://www.huya.com/19897245",
+		"qq": "7f72d9ad1a30961f3a18830b6a897adb"
+		},
+		{
+		"link": "https://www.huya.com/913135",
+		"qq": "0e99d2f81f99877e881eeef2bd0b28d8"
+		},
+		{
+		"link": "https://www.huya.com/610843",
+		"qq": "edf950f564df737a8cce40bac292930c"
+		},
+		{
+		"link": "https://www.huya.com/23854774",
+		"qq": "f70b8902b72c97291fdac37beb9b10ea"
+		},
+		{
+		"link": "https://www.huya.com/25075704",
+		"qq": "a5d9355a4aba264427d8a4895c3051a8"
+		},
+		{
+		"link": "https://www.huya.com/621383",
+		"qq": "426d7e5f07743eeb0be0e2a7b70c1856"
+		},
+		{
+		"link": "https://www.huya.com/20895614",
+		"qq": "f715401e990c9e4878ed863fe1e996e0"
+		},
+		{
+		"link": "https://www.huya.com/20361353",
+		"qq": "daa86029edab8b013f27edbe6b1017d5"
+		},
+		{
+		"link": "https://www.huya.com/20653361",
+		"qq": "57ffa18426cd91d5a1961e40c63a3c0e"
+		},
+		{
+		"link": "https://www.huya.com/913136",
+		"qq": "e06cb2080225b3664b37b3b9f73e2de2"
+		},
+		{
+		"link": "https://www.huya.com/913144",
+		"qq": "a972680118fd29ed3ba56b618ca36909"
+		},
+		{
+		"link": "https://www.huya.com/25927053",
+		"qq": "cdd78a3c3654356706d7839159137e4a"
+		},
+		{
+		"link": "https://www.huya.com/22770942",
+		"qq": "fef143eb917c9115d63bb4577e06f956"
+		},
+		{
+		"link": "https://www.huya.com/16899819",
+		"qq": "7682e8e8370ba87866cc62f01554018a"
+		},
+		{
+		"link": "www.huya.com/26393390",
+		"qq": "ab434801566e75a7f17933d6957b1427"
+		},
+		{
+		"link": "https://www.huya.com/25254912",
+		"qq": "8bfd1ee95ef79069e1a8f7eedc5a4987"
+		},
+		{
+		"link": "https://www.huya.com/19359786",
+		"qq": "9782c6c3d0e4bfa691cee5f766bd7fa3"
+		},
+		{
+		"link": "https://www.huya.com/23269882",
+		"qq": "168e5541436bec9e26466e5b2e699b0b"
+		},
+		{
+		"link": "https://www.huya.com/26573346",
+		"qq": "0837fe29d94a999bc0d7fe16064c065c"
+		},
+		{
+		"link": "https://www.huya.com/25578574",
+		"qq": "2e9976f038bee14eb54e12309f57189f"
+		},
+		{
+		"link": "https://www.huya.com/22647767",
+		"qq": "5601e5c0a6d766290fd54ec834e4e50a"
+		},
+		{
+		"link": "https://www.huya.com/17069507",
+		"qq": "93daa3635d03e3fe76cb209d4a07fe61"
+		},
+		{
+		"link": "https://www.huya.com/26826260",
+		"qq": "dc0456c9fca444d080c23da5f6f7d8bd"
+		},
+		{
+		"link": "https://www.huya.com/26041368",
+		"qq": "1497ef18a17526863826ecafa389755e"
+		},
+		{
+		"link": "https://www.huya.com/26823699",
+		"qq": "d11baf6df2e47623bbaeb3b28dab5427"
+		},
+		{
+		"link": "https://www.huya.com/26748889",
+		"qq": "263a9e1924f881de7e1d32a9077bdc99"
+		},
+		{
+		"link": "https://www.huya.com/26837072",
+		"qq": "74f30bb58dab5edb0c0d47a20e6e6379"
+		},
+		{
+		"link": "https://www.huya.com/26647101",
+		"qq": "57d5072e0f5a0715e05b6d5418ae3ecc"
+		},
+		{
+		"link": "https://www.huya.com/26578504",
+		"qq": "4c7a5417c2bce8ac842280c28cdcf54b"
+		},
+		{
+		"link": "https://www.huya.com/26581277",
+		"qq": "030b9c1cb36b713d07bda4ceb1ac4294"
+		},
+		{
+		"link": "https://www.huya.com/25553245",
+		"qq": "1b293dcc18ec1a811d122b3dd4c4915e"
+		},
+		{
+		"link": "https://www.huya.com/16501874",
+		"qq": "0b15bfb7f3f9ca3c5a2f4d0a91a3319f"
+		},
+		{
+		"link": "https://www.huya.com/731244",
+		"qq": "96b9b4f3e399a1773d7a396c3390328b"
+		}
+	]
+}
