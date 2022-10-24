@@ -1,0 +1,91 @@
+const { Common, ZM, LOLAPP, Ajax, Lib, Swoole } = LOL;
+var $ = JQ = jQuery.noConflict(true);
+if (Common.checkPlat('lolapp') === 'ZM') {
+	PLAT_ID = 'ZM';
+	SOURCE='lolapp'
+}
+Common.checkPlat('lolapp') === 'ZM'
+// 判断双端环境加载对应脚本
+if (Common.isPC()) {
+  // PC端执行
+  Ajax.seriesLoadScripts([
+      { src: '//ossweb-img.qq.com/images/lol/title/lol.js', charset: 'gbk' }
+  ])
+      .then(() => {
+        initRightNav();
+      })
+      .catch(e => console.log(e))
+} else {
+  // 移动端执行
+  // 初始化分享
+  const sharePrimary = () => {
+      // QTLTools.SetTitle('第三届《英雄联盟 云顶之弈》公开赛')
+      QTLTools.SetShare({
+          url: location.href,
+          title: '第四届云顶之弈公开赛',
+          content: '风起云巅，弈战四海！TOC4百万奖金，即刻起航',
+          thumb_url: 'https://game.gtimg.cn/images/toc/act/a20220926act/share.png',
+          callback: function(channel) {
+              console.log('点击了原生分享:', channel);
+              switch (channel) {
+                  case 'wx_appmessage':
+                      PTTSendClick('btn', 'sharewx', '分享给好友');
+                      break;
+                  case 'wx_timeline':
+                      PTTSendClick('btn', 'sharewx_timeline', '分享到朋友圈');
+                      break;
+                  case 'qq_appmessage':
+                      PTTSendClick('btn', 'shareqq', '分享到QQ');
+                      break;
+                  case 'qq_qzone':
+                      PTTSendClick('btn', 'shareqq_qzone', '分享到QQ空间');
+                      break;
+                  default:
+                      break;
+              }
+
+          },
+      })
+  }
+  LOLAPP.initAPP()
+      .then(() => {
+          sharePrimary();
+          setTimeout(() => {
+              sharePrimary();
+          }, 5000);
+      })
+      .catch(e => console.log(e))
+
+  // Ajax.seriesLoadScripts([
+  // ])
+  //     .then(() => console.log('移动端脚本加载完成'))
+  //     .catch(e => console.log(e))
+}
+
+
+//弹出框
+function TGDialogS(e){
+	need("biz.dialog",function(Dialog){
+		Dialog.show({
+			id:e,
+			bgcolor:'#000', 
+			opacity:80 
+		});
+	});
+}
+function closeDialog(){
+  need("biz.dialog",function(Dialog){
+    Dialog.hide();
+  });
+  //$('#video').html(' ');
+}
+//视频 
+function videPlay(e,vid,w,h) {
+	var player = new Txplayer({
+        containerId:e,
+        vid: vid,
+        width: w,
+        height: h,
+        autoplay:true
+    });
+}

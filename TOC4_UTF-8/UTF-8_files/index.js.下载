@@ -1,0 +1,389 @@
+//Tab切换
+$('.ractab a').click(function(){
+	$(this).addClass("on").siblings().removeClass("on"); 
+	$(".ractab-box > .ractab-con").eq($('.ractab a').index(this)).show().siblings().hide();
+});
+//Tab中奖
+$('.tab-win-tab span').click(function(){
+	$(this).addClass("curr").siblings().removeClass("curr"); 
+	$(".tab-win-con > .tab-win").eq($('.tab-win-tab span').index(this)).show().siblings().hide();
+});
+$('.topnav a').click(function(){
+	var idnav = $(this).index();
+	if(idnav==0 || idnav==2){
+		$(".ractab-con:nth-child(2)").show().siblings(".ractab-con").hide();
+		$(".ractab a:nth-child(2)").addClass("on").siblings().removeClass("on"); 	
+	}if(idnav==3){
+		$(".ractab-con:nth-child(3)").show().siblings(".ractab-con").hide();
+		$(".ractab a:nth-child(3)").addClass("on").siblings().removeClass("on"); 	
+	}if(idnav==4){
+		$(".ractab-con:nth-child(1)").show().siblings(".ractab-con").hide();
+		$(".ractab a:nth-child(1)").addClass("on").siblings().removeClass("on"); 
+	}if(idnav==5){
+		$(".ractab-con:nth-child(4)").show().siblings(".ractab-con").hide();
+		$(".ractab a:nth-child(4)").addClass("on").siblings().removeClass("on"); 
+	}			
+});
+//轮播
+function sowSwi(id,pagination,next,prev,ani){
+	var swiper = new Swiper('#'+id, {
+		//spaceBetween: 10,
+		loop: true,
+		effect: ani,
+		//observer:true,
+		//observeParents:true,
+		autoplay:{
+			delay:5000,
+			stopOnLastSlide: false,
+			disableOnInteraction: false,
+		},
+		navigation: {
+			nextEl: '#'+next,
+			prevEl: '#'+prev,
+		},
+		pagination: {
+			el: '#'+pagination,
+			bulletElement: 'li',
+			clickable :true,
+		}
+	}); 
+}
+sowSwi('sow1','pagination1','next','prev','');
+$("#pagination1 li:nth-child(1)").append('<i>2020 TOC1</i>')
+$("#pagination1 li:nth-child(2)").append('<i>2021 TOC2</i>')
+$("#pagination1 li:nth-child(3)").append('<i>2022 TOC3</i>')
+$("#pagination1").append('<li></li>')
+$("#pagination1 li:nth-child(4)").append('<i>2022 TOC4</i>')
+//随机
+$(".pla-list li").each(function(){
+	if(parseInt(Math.random()*2)==0){
+		$(this).prependTo($(this).parent());
+	}    
+});
+//简介视频
+$('.video-btn1').click(function(){
+	videPlay('container1','w3358dyneei','100%','100%')
+	$(this).hide();
+	$("#container2").html(' ');
+	$(".video-btn2").show();
+});
+//双龙视频
+$('.video-btn2').click(function(){
+	videPlay('container2','l3359rkszau','100%','100%')
+	$(this).hide();
+	$("#container1").html(' ');
+	$(".video-btn1").show();
+});
+//导航跳转
+function slide(e){
+	var offset = $(e).offset().top;
+	$("html,body").animate({"scrollTop":offset});
+}
+var zoom = 1;
+if (Common.isPC()) {
+  //PC
+  var adaptViewport = (function () {
+    function detectIE() {
+      var ua = window.navigator.userAgent
+      var msie = ua.match(/MSIE (\d+)/g)
+      if (msie != null) {
+        return parseInt(msie[0].match(/\d+/g)[0])
+      }
+      // IE 11
+      var trident = ua.indexOf('Trident/')
+      if (trident > 0) {
+        var rv = ua.indexOf('rv:')
+        return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10)
+      }
+      return false
+    }
+    var minWidth = 1400 
+    var designWidth = 1920 
+    var isFirefox = navigator.userAgent.indexOf('Firefox') != -1
+    var ieVersion = detectIE()
+    function resize() {
+      var ww = document.documentElement.clientWidth || window.innerWidth
+      var realWid = Math.max(ww, minWidth)
+      zoom = realWid / designWidth
+      if (ieVersion && ieVersion < 9) {
+        return
+      }
+      if (isFirefox || ieVersion >= 9) {
+        if (zoom !== 1) {
+          if (!$('.wrap').parent().hasClass('wrap-scale')) {
+            $('.wrap').wrap('<div class="wrap-scale"></div>')
+            $('.wrap-scale').css('position', 'relative')
+          }
+          $('.wrap').data('originHeight', $('.wrap').outerHeight())
+          var transformOrigin = '0% 0%'
+          $('.wrap').css({ width: designWidth, transform: 'scale(' + zoom + ')', 'transform-origin': transformOrigin, 'margin-left': 0 })
+          $('.wrap-scale').css({ width: realWid > minWidth ? 'auto' : minWidth, height: $('.wrap').data('originHeight') * zoom, overflow: 'hidden' })
+        }
+      } else {
+        $('.wrap').css({ width: designWidth, zoom: zoom })
+      }
+    }
+    resize()
+    window.onresize = resize
+    function resizeWrapScale() {
+      $('.wrap-scale').css({ height: $('.wrap').outerHeight() * zoom })
+    }
+    return { zoom: zoom, resizeWrapScale: resizeWrapScale }
+  })()
+  //侧导航
+  /*$('.right-nav-inner a').click(function(e){
+    e.preventDefault();
+    var href = $(this).attr('href');
+    if (href) {
+        slide(href);
+    }
+  })*/
+  $(document).scroll(function() {
+    var _top = $(document).scrollTop();
+    $('.right-nav-inner a').each(function(){
+        var href = $(this).attr('href');
+        if (href && href.indexOf('#') == 0) {
+          var $anchor = $(href);
+          if ($anchor.length > 0) {
+              var offsetTop = $anchor.offset().top;
+              if (_top >= offsetTop - 300) {
+                  $(this).addClass('curr').siblings().removeClass('curr')
+              }
+            }
+         }
+      })
+    });
+	//侧导航
+	function initRightNav() {
+	  $('.right-nav-toggle').click(function () {
+		$(this).hide();
+		$('.right-nav').show().removeClass('fhide')
+	  })
+	  $('.right-nav a.right-nav-hide').click(function(){
+		$('.right-nav-toggle').show();
+		$('.right-nav').hide().addClass('fhide')
+	  })
+	  $(document).scroll(function () {
+		if ($('.right-nav').hasClass('fhide')) {
+		  return
+		}
+		var _top = $(document).scrollTop();
+	
+		if (_top >= 800) {
+		  $('.right-nav').fadeIn();
+		} else {
+		  $('.right-nav').fadeOut();
+		}
+	  });
+	}
+	initRightNav();	
+  $('.btn-top').click(function(){$('html,body').animate({scrollTop: '0px'}, 300);});
+  $(".btn-dy").attr('href','//www.douyu.com/topic/ydqyb?rid=522423');
+  //背景高度
+  $('.topnav a').click(function(){
+	var idnav = $(this).index();
+	if(idnav==0 || idnav==2){	
+		$(".bgbox .bg4").css('height','900px'); 	
+	}if(idnav==3){	
+		$(".bgbox .bg4").css('height','2860px'); 
+	}if(idnav==4){	
+		$(".bgbox .bg4").css('height','1100px'); 
+	}if(idnav==5){ 	
+		$(".bgbox .bg4").css('height','900px'); 
+	}			
+	});
+  $('.ractab a').click(function(){
+	var idrac = $(this).index();
+	if(idrac==0){	
+		$(".bgbox .bg4").css('height','1100px'); 	
+	}if(idrac==1){	
+		$(".bgbox .bg4").css('height','900px'); 
+	}if(idrac==2){	
+		$(".bgbox .bg4").css('height','2860px'); 
+	}if(idrac==3){	
+		$(".bgbox .bg4").css('height','900px'); 
+	}	
+   });
+} else {
+  //H5
+  $(".btn-dy").attr('href','//m.douyu.com/522423');
+  $('.wrap a').attr('target','_self');
+	//移动端
+	//Tab切换
+	$('.bre-nav a').click(function(){
+		$(this).addClass("on").siblings().removeClass("on"); 
+		$(".bre-inner .bre-in").eq($('.bre-nav a').index(this)).show().siblings(".bre-in").hide();
+	});
+	//查看大图
+	function initScheduleZoom() {
+    var schedule = document.querySelector('.pop-schedule-bd');
+    panzoom(schedule, {
+      initialX: 1500,
+      initialY: 0,
+      initialZoom: 1.5,
+      onTouch: function(e) {
+        return false; 
+      }
+    })
+  }
+  Ajax.seriesLoadScripts([
+    { src: '//toc.qq.com/act/a20220926act/js/panzoom.min.js' }
+  ])
+  .then(() => {
+	$('.btn-largerimg').click(function(){
+	  $('#popSchedule').show();
+	  initScheduleZoom();
+	})
+	$('#popSchedule .pop-schedule-close').click(function(){
+	  $('#popSchedule').hide();
+	})
+  })
+  .catch(e => console.log(e))
+}
+let anchor = Common.getQueryString('anchor')
+if (anchor) {
+  slide('#'+anchor)
+}
+
+// 平台赛道
+var pfs = [
+  { icon: 'appicon-huya.png', name: '虎牙赛区', desc: '9月24日-10月16日', link:'//www.huya.com/qitux' },
+  { icon: 'appicon-douyu.png', name: '斗鱼赛区', desc: '9月24日-10月16日', link:'//www.douyu.com/topic/ydqyb?rid=522423' },
+  { icon: 'appicon-kuaishou.png', name: '快手赛区', desc: '9月24日-10月16日', link:'//ppg.viviv.com/doodle/jYUbgxeN.html' },
+  { icon: 'appicon-bilibili.png', name: 'bilibili赛区', desc: '10月1日-10月16日', link:'//link.bilibili.com/p/eden/news#/newsDetail?id=3070' },
+];
+if (!Common.isPC()) {
+  pfs.forEach(function(item){
+    if (item.linkm) {
+      item.link = item.linkm;
+    }
+  })
+}
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+pfs = shuffle(pfs)
+$("#pfList").html(template("pfTemplate", pfs));
+// 全民赛道-排行榜
+var rank = (function() {
+  var pageSize = 20;
+  var Tiers = {
+    1: '最强王者',
+    2: '傲世宗师',
+    3: '超凡大师',
+    4: '璀璨钻石',
+    5: '华贵铂金',
+    6: '荣耀黄金',
+    7: '不屈白银',
+    8: '英勇黄铜',
+    9: '坚韧黑铁'
+  }
+  function pagination(list) {
+    if (!list) { list = []; }
+    var totalCount = list.length;
+    if (totalCount > 0) {
+      JQ('#rankPagination').jqPaginator({
+        totalCounts: totalCount,
+        pageSize: pageSize,
+        visiblePages: 5,
+        currentPage: 1,
+        activeClass: 'active',
+        first: '<a href="javascript:void(0);">首页</a>',
+        prev: '<a href="javascript:void(0);">上一页</a>',
+        next: '<a href="javascript:void(0);">下一页</a>',
+        last: '<a href="javascript:void(0);">尾页</a>',
+        page: '<a href="javascript:void(0);">{{page}}</a>',
+        onPageChange: function (num) {
+            var page = (num - 1) * pageSize;
+            var limit = page;
+            if (limit > totalCount) {
+                limit = totalCount;
+            }
+            renderRankHtml(list.slice(limit, limit+pageSize))
+        }
+      });
+    } else {
+      renderRankHtml([])
+    }
+  }
+  function renderRankHtml(d) {
+      var html = template('rankTemplate', d);
+      document.getElementById('rankContainer').innerHTML = html;
+  }
+  // 加载接口数据
+  // iTier（段位）：1~9，王者宗师大师钻石白金黄金白银青铜黑铁
+  // iRank（段位几）1~5
+  // iPoints（胜点）
+  // iTotalFourRate（前四概率）0.0000~1.0000，iTotalFourRate*100+%
+  // iTotalOneRate(登顶率) 0.0000~1.0000，iTotalOneRate*100+%
+  function load() {
+    //let url = '//lpl.qq.com/web201612/data/LOL_MATCH2_GAME_TOC4_RANKING_LIST.js'
+	$.getJSON("//toc.qq.com/act/a20220926act/js/LOL_MATCH2_GAME_TOC4_RANKING_LIST.js", function(res) {  
+	if (typeof res == 'string') {
+		  res = JSON.parse(res);
+		}
+		let { msg } = res;
+		if (Array.isArray(msg)) {
+		  msg = msg.slice(0, 60)
+		}
+		msg.forEach(function(item, index){
+		  item.sTier = Tiers[item.iTier] + (Number(item.iRank) + 1);
+		  item.sTotalFourRatePercent = (item.iTotalFourRate * 100).toFixed(2) + '%';
+		  item.sTotalOneRatePercent = (item.iTotalOneRate * 100).toFixed(2) + '%';
+		  item.sFName = decodeURIComponent(item.sName);
+      if (item.sFName.includes('FLAGGED')) {
+        item.sFName = '角色名称待更新'
+      }
+		  item.iIdx = index;
+		  let list = []
+        for (let x in LIVE_ROOMS) {
+            LIVE_ROOMS[x].forEach(function (one) {
+                list.push(one)
+            })
+          }
+          let person = list.find(x => x.qq == item.iUin)
+          if (person) {
+              item.sLink = person.link
+          }
+		  /*let r = getLiveRoom(item.iUin);
+		  if (r) {
+			item.sLink = r;
+		  }*/
+		  
+		})
+		pagination(msg);
+		$('.raccon-tab-inner,.rank-pagination').show();																				 
+	})
+    //Ajax.jFetch({ url })
+  }
+  /*let liveRooms = {};
+  function getLiveRoom(qq) {
+    return liveRooms[qq];
+  }
+  function initLiveRoomData() {
+    for (let pf in LIVE_ROOMS) {
+      let rooms = LIVE_ROOMS[pf];
+      rooms.forEach(function(item){
+        var iQQ = item.qq;
+        var sLink = item.link;
+        iQQ = md5(iQQ)
+        liveRooms[iQQ] = sLink
+      })
+    }
+  }*/
+  function init() {
+    load();
+    //initLiveRoomData();
+  }
+  return { init: init, load: load, pagination: pagination }
+})();
+rank.init();
+
+
+
+
+
+
+
+
+
