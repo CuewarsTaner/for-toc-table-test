@@ -1,0 +1,127 @@
+
+const { Login } = LOL;
+
+function showMsg(msg) {
+  $('#popMsg .pop-msg-txt').html(msg);
+  TGDialogS('popMsg')
+}
+
+// 首页-全民赛道-现金掉落奖励-领奖
+var DropReward = (function(){
+  let config = {
+    areaId: -1
+  }
+  const loginObj = new Login({
+    pc: {
+      // 我想pc登录后不刷新
+      needReloadPage: false,
+    },
+    mobile: {
+      // 我不允许QQ的一键登录
+      sData: {
+        pt_no_onekey: 1,
+      },
+    },
+    init() {
+      // 这里才开始有milo/login/roleselector/dialog，不需要再次定义TGDialogS和closeDialog啦，直接用
+      // 可以执行一些页面初始化
+      initDOM();
+    },
+    logined() {
+      // 这里已经通过了milo的checkRealLogin校验，可以拿到用户信息
+      console.log(loginObj.userInfo);
+    },
+    logout() {
+      // 注销后需要对页面的状态和变量做初始化哦
+      initDOM();
+      config.area = -1;
+    },
+  });
+
+  // 查询是否符合领奖条件接口，result['res']>0,符合领奖条件
+  // https://lol.sw.game.qq.com/lol/lwdcommact/a20220406toc3lottery/a20220406toc3lottery/getToc3AwardData
+  function query() {
+    $.ajax({
+      type: 'GET',
+      dataType: 'jsonp',
+      url: 'https://lol.sw.game.qq.com/lol/lwdcommact/a20220406toc3lottery/a20220406toc3lottery/getToc3AwardData', 
+      success: function(res) {
+        console.log('[DropReward] res')
+        console.log(res)
+        if (res.status == 0) {
+          if (res.res > 0) {
+            var dt = new Date(res.date);
+            let date = dt.getFullYear() + '年' + (dt.getMonth()+1) + '月' + dt.getDate() + '日'
+            $('#dropDate').text(date)
+            $('#dropNum').text(res.num)
+            TGDialogS('popDropsGuide')
+          } else {
+            TGDialogS('popDropNo')
+          }
+        } else {
+          showMsg(res.msg)
+        }
+      },
+      error: function(e){
+        console.log('[DropReward] error', e);
+        console.log(e);
+      }
+    })
+  }
+  function save(flag) {
+    // 保存领奖方式接口：iArea大区，iflag=1（虚拟点券或QB）iflag=2（现金）
+  // https://lol.sw.game.qq.com/lol/lwdcommact/a20220406toc3lottery/a20220406toc3lottery/saveToc3AwardData?iArea=1&iFlag=2
+    $.ajax({
+      type: 'GET',
+      dataType: 'jsonp',
+      url: 'https://lol.sw.game.qq.com/lol/lwdcommact/a20220406toc3lottery/a20220406toc3lottery/saveToc3AwardData?iArea='+config.areaId+'&iFlag=1', 
+      success: function(res) {
+        console.log('[DropReward] res')
+        console.log(res)
+        if (res.status == 0) {
+          showMsg('领取成功，道具将在24小时内发放到账号绑定的大区')
+        }
+      },
+      error: function(e){
+        console.log('[DropReward] error', e);
+        console.log(e);
+      }
+    })
+  }
+  function initDOM() {
+    $('.pop-drops-btn-start').click(function(){
+      loginObj
+        .checkLogin()
+        .then((userInfo) => {
+          console.log("已QQ登录");
+          console.log(userInfo);
+          query();
+        })
+        .catch((e) => {
+          console.log(e);
+          loginObj.login();
+        });
+    })
+    $('#popDropChoice .btn-dq').click(function(){
+      loginObj
+        .checkBind()
+        .then(areaId => {
+          console.log('已绑定大区');
+          console.log(areaId);
+          $('#popDropCf #areaInfo').text(loginObj.zoneToName(areaId))
+          config.areaId = areaId;
+        })
+        .catch(e => {
+            // 如果未绑定后拉起大区绑定时执行了绑定，则不会走到catch，catch会捕获错误
+          console.log(e);
+          // do something
+        })
+    })
+    $('#popDropCf .pop-drop-cf-confirm').click(function(){
+      save();
+    })
+    $('#popDropCf .pop-close, #popDropCf .pop-drop-cf-cancel').click(function(){
+      loginObj.logout()
+    })
+  }
+})()

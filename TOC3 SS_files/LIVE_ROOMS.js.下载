@@ -1,0 +1,267 @@
+const LIVE_ROOMS = {
+  "douyu": [
+      {
+          "link": "https://www.douyu.com/594019",
+          "qq": "1400149754"
+      },
+      {
+          "link": "https://www.douyu.com/1300804",
+          "qq": "651671055"
+      },
+      {
+          "link": "https://www.douyu.com/7084089",
+          "qq": "913942653"
+      },
+      {
+          "link": "https://www.douyu.com/4666609",
+          "qq": "2937883251"
+      },
+      {
+          "link": "https://www.douyu.com/216555"
+      },
+      {
+          "link": "https://www.douyu.com/1871158",
+          "qq": "308000701"
+      },
+      {
+          "link": "https://www.douyu.com/9471398",
+          "qq": "568151839"
+      },
+      {
+          "link": "https://www.douyu.com/7421029",
+          "qq": "2532010015"
+      },
+      {
+          "link": "https://www.douyu.com/9462277",
+          "qq": "570653904"
+      },
+      {
+          "link": "https://www.douyu.com/4066273",
+          "qq": "576261421"
+      },
+      {
+          "link": "https://www.douyu.com/7251147",
+          "qq": "1443817919"
+      },
+      {
+          "link": "https://www.douyu.com/9216280",
+          "qq": "1405767233"
+      },
+      {
+          "link": "https://www.douyu.com/989347",
+          "qq": "3481048872"
+      },
+      {
+          "link": "https://www.douyu.com/9700836",
+          "qq": "505594345"
+      }
+  ],
+  "huya": [
+      {
+          "link": "https://www.huya.com/102411",
+          "qq": "451335632"
+      },
+      {
+          "link": "https://www.huya.com/229085",
+          "qq": "294625709"
+      },
+      {
+          "link": "https://www.huya.com/31421",
+          "qq": "1523427017"
+      },
+      {
+          "link": "https://www.huya.com/qitux",
+          "qq": "1064134831"
+      },
+      {
+          "link": "https://www.huya.com/598527",
+          "qq": "1461755340"
+      },
+      {
+          "link": "https://www.huya.com/239886",
+          "qq": "626038528"
+      },
+      {
+          "link": "https://www.huya.com/610649",
+          "qq": "894510314"
+      },
+      {
+          "link": "https://www.huya.com/657317",
+          "qq": "1002716356"
+      },
+      {
+          "link": "https://www.huya.com/621380",
+          "qq": "1315054511"
+      },
+      {
+          "link": "https://www.huya.com/20635767",
+          "qq": "104688936"
+      },
+      {
+          "link": "https://www.huya.com/517659",
+          "qq": "2518806615"
+      },
+      {
+          "link": "https://www.huya.com/273244",
+          "qq": "2114893936"
+      },
+      {
+          "link": "https://www.huya.com/573728",
+          "qq": "769016768"
+      },
+      {
+          "link": "https://www.huya.com/124123",
+          "qq": "779862381"
+      },
+      {
+          "link": "https://www.huya.com/913134",
+          "qq": "196084482"
+      },
+      {
+          "link": "https://www.huya.com/517647",
+          "qq": "137800656"
+      },
+      {
+          "link": "https://www.huya.com/713328",
+          "qq": "1823957382"
+      },
+      {
+          "link": "https://www.huya.com/19897245",
+          "qq": "1295902660"
+      },
+      {
+          "link": "https://www.huya.com/913135",
+          "qq": "494742912"
+      },
+      {
+          "link": "https://www.huya.com/610843",
+          "qq": "243875824"
+      },
+      {
+          "link": "https://www.huya.com/23854774",
+          "qq": "3179996037"
+      },
+      {
+          "link": "https://www.huya.com/25075704",
+          "qq": "1751197737"
+      },
+      {
+          "link": "https://www.huya.com/621383",
+          "qq": "632212198"
+      },
+      {
+          "link": "https://www.huya.com/20895614",
+          "qq": "3285394571"
+      },
+      {
+          "link": "https://www.huya.com/20361353",
+          "qq": "315041275"
+      },
+      {
+          "link": "https://www.huya.com/20653361",
+          "qq": "892925874"
+      },
+      {
+          "link": "https://www.huya.com/913136",
+          "qq": "471279964"
+      },
+      {
+          "link": "https://www.huya.com/913144",
+          "qq": "496360583"
+      },
+      {
+          "link": "https://www.huya.com/25927053",
+          "qq": "609447809"
+      },
+      {
+          "link": "https://www.huya.com/22770942",
+          "qq": "482073456"
+      },
+      {
+          "link": "https://www.huya.com/16899819",
+          "qq": "514410865"
+      },
+      {
+          "link": "www.huya.com/26393390",
+          "qq": "879080300"
+      },
+      {
+          "link": "https://www.huya.com/25254912",
+          "qq": "2582956166"
+      },
+      {
+          "link": "https://www.huya.com/19359786",
+          "qq": "2041956045"
+      },
+      {
+          "link": "https://www.huya.com/23269882",
+          "qq": "1761400923"
+      },
+      {
+          "link": "https://www.huya.com/26573346",
+          "qq": "1571283604"
+      },
+      {
+          "link": "https://www.huya.com/25578574",
+          "qq": "3548612050"
+      },
+      {
+          "link": "https://www.huya.com/22647767",
+          "qq": "1363307899"
+      },
+      {
+          "link": "https://www.huya.com/17069507",
+          "qq": "2248900838"
+      },
+      {
+          "link": "https://www.huya.com/26826260",
+          "qq": "2577482806"
+      },
+      {
+          "link": "https://www.huya.com/26041368",
+          "qq": "452615104"
+      },
+      {
+          "link": "https://www.huya.com/26823699",
+          "qq": "2338174931"
+      },
+      {
+          "link": "https://www.huya.com/26748889",
+          "qq": "1391473127"
+      },
+      {
+          "link": "https://www.huya.com/26837072",
+          "qq": "525963423"
+      },
+      {
+          "link": "https://www.huya.com/26647101",
+          "qq": "1298594984"
+      },
+      {
+          "link": "https://www.huya.com/26578504",
+          "qq": "1435500484"
+      },
+      {
+          "link": "https://www.huya.com/26581277",
+          "qq": "356752768"
+      },
+      {
+          "link": "https://www.huya.com/25553245",
+          "qq": "852916712"
+      },
+      {
+          "link": "https://www.huya.com/16501874",
+          "qq": "1696569194"
+      },
+      {
+          "link": "https://www.huya.com/731244",
+          "qq": "1822966694"
+      },
+      {
+          "link": "https://www.huya.com/25736491"
+      },
+      {
+          "link": "https://www.huya.com/573082"
+      }
+  ]
+}
